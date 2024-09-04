@@ -78,3 +78,18 @@ Route::resource('photos', PhotoController::class)->except(['create', 'store', 'u
 
 //MENAMPILKAN VIEW DARI CONTROLLER
 Route::get('/greeting', [WelcomeController::class, 'greeting']);
+
+//SOAL PRAKTIKUM
+use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\TransaksiController;
+Route::get('/beranda', [BerandaController::class, 'homepage']);
+Route::prefix('kategori')->group(function () {
+    Route::get('/food-beverage', [ProdukController::class, 'foodBeverage']);
+    Route::get('/beauty-health', [ProdukController::class, 'beautyHealth']);
+    Route::get('/home-care', [ProdukController::class, 'homeCare']);
+    Route::get('/baby-kid', [ProdukController::class, 'babyKid']);
+    });
+Route::get('/user/{id}/name/{name}', [UserController::class, 'user']);
+Route::get('/transaksi', [TransaksiController::class, 'transaction']);
